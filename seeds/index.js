@@ -22,18 +22,30 @@ const sample = (array) => array[Math.floor(Math.random() * array.length)];
 const seedDB = async() => {
     await Campground.deleteMany({});
     await Review.deleteMany({});
-    await User.deleteMany({});
 
-    for (let index = 0; index < 50; index++) {
+    for (let index = 0; index < 25; index++) {
         const random1000 = Math.floor(Math.random() * 1000);
         const price = Math.floor(Math.random() * 20) + 10;
         const camp = new Campground({
-            author: '5fd9a4be206d820d4d465380',
+            author: '5fdc3c17d4d37142f742d1eb',
             location: `${cities[random1000].city}, ${cities[random1000].state}`,
             title: `${sample(descriptors)} ${sample(places)}`,
-            image: 'https://source.unsplash.com/800x600/?nature,hiking,mountains',
             description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil fuga placeat aperiam, quo reiciendis facere. Esse ipsam inventore beatae modi aliquam. A incidunt maxime placeat nam iste aperiam mollitia animi.',
-            price: price
+            price: price,
+            images:[ 
+                { 
+                    url:'https://res.cloudinary.com/klempear/image/upload/v1608267983/YelpCamp/rtiie8s1lwbpnajhgsep.jpg',
+                    filename: 'YelpCamp/rtiie8s1lwbpnajhgsep' 
+                },
+                { 
+                    url:'https://res.cloudinary.com/klempear/image/upload/v1608267986/YelpCamp/bwvzxe2u5m8odoz0kven.jpg',
+                    filename: 'YelpCamp/bwvzxe2u5m8odoz0kven' 
+                },
+                {
+                    url:'https://res.cloudinary.com/klempear/image/upload/v1608267992/YelpCamp/rtfwlncz2zbb9xydbljm.jpg',
+                    filename: 'YelpCamp/rtfwlncz2zbb9xydbljm' 
+                } 
+            ]
         });
         await camp.save();
     }
