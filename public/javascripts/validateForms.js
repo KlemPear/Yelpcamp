@@ -1,6 +1,8 @@
 (function() {
     'use strict'
 
+    bsCustomFileInput.init();
+
     //fecth all the form we want to apply custom validation to
     const forms = document.querySelectorAll('.validated-form');
 

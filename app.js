@@ -20,7 +20,7 @@ const campgroundRoutes = require('./routes/campgrounds');
 const reviewRoutes = require('./routes/reviews');
 const userRoutes = require('./routes/users');
 
-// sudo mongod --dbpath=/home/clem/YelpCamp/data/db
+// sudo mongod --dbpath=/home/clem/Git/YelpCamp/data/db
 // mongo | use yelp-camp | db.campgrounds.find()
 // npx nodemon app.js
 

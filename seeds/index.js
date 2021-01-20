@@ -23,7 +23,7 @@ const seedDB = async() => {
     await Campground.deleteMany({});
     await Review.deleteMany({});
 
-    for (let index = 0; index < 25; index++) {
+    for (let index = 0; index < 15; index++) {
         const random1000 = Math.floor(Math.random() * 1000);
         const price = Math.floor(Math.random() * 20) + 10;
         const camp = new Campground({
