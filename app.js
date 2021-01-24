@@ -23,11 +23,14 @@ const reviewRoutes = require('./routes/reviews');
 const userRoutes = require('./routes/users');
 const { sanitize } = require('express-mongo-sanitize');
 
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp';
+const MongoStore = require('connect-mongo')(session);
+
 // sudo mongod --dbpath=/home/clem/Git/YelpCamp/data/db
 // mongo | use yelp-camp | db.campgrounds.find()
 // npx nodemon app.js
 
-mongoose.connect('mongodb://localhost:27017/yelp-camp',{
+mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
@@ -51,9 +54,22 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(mongoSanitize());
 
+const secret = process.env.SECRET || 'thisShouldBeASecret';
+
+const store = new MongoStore({
+    url: dbUrl,
+    secret: secret,
+    touchAfter: 24 * 60 * 60 // lazy update sessions every 24 hours (writen here in seconds)
+});
+
+store.on('error', function(e){
+    console.log("Session store error", e)
+})
+
 const sessionConfig = {
+    store: store,
     name: 'CoolSessionName',
-    secret: 'thisShouldBeASecret',
+    secret: secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
