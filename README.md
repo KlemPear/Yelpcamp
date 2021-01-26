@@ -14,4 +14,4 @@ If you want to start it locally:
  # Mongo
 // sudo mongod --dbpath=/home/clem/Git/YelpCamp/data/db
 // mongo | use yelp-camp | db.campgrounds.find()
-// npx nodemon app.js
+
