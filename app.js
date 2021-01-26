@@ -26,10 +26,6 @@ const { sanitize } = require('express-mongo-sanitize');
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp';
 const MongoStore = require('connect-mongo')(session);
 
-// sudo mongod --dbpath=/home/clem/Git/YelpCamp/data/db
-// mongo | use yelp-camp | db.campgrounds.find()
-// npx nodemon app.js
-
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useCreateIndex: true,

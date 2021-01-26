@@ -9,3 +9,9 @@ If you want to start it locally:
  - In the source code directory, open a terminal and enter 'npm install'
  - In the source code directory again, same terminal, enter 'npm start'
  - Enjoy!
+
+
+ # Mongo
+// sudo mongod --dbpath=/home/clem/Git/YelpCamp/data/db
+// mongo | use yelp-camp | db.campgrounds.find()
+// npx nodemon app.js
